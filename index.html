@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electronics Store</title>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="website.css">
+
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav>
+  <a class="brand" href="#">
+    <div class="brand-icon">⚡</div>
+    <span class="brand-name">ELECTRONICS<em>.</em></span>
+  </a>
+
+  <div class="search-wrap">
+    <input id="srch" type="text" placeholder="Search products…" oninput="doSearch()">
+    <button onclick="doSearch()">🔍</button>
+  </div>
+
+  <!-- ─── TOGGLE ─── -->
+  <div class="mode-wrap">
+    <span class="mode-label" id="modeLabel">🌙 Dark</span>
+    <div class="pill" id="pill" onclick="toggleTheme()">
+      <div class="pill-thumb" id="pthumb">🌙</div>
+    </div>
+  </div>
+
+  <button class="cart-btn" id="cartBtn" onclick="cartToast()">
+    🛒 Cart
+    <span class="c-badge" id="cCount">0</span>
+  </button>
+</nav>
+
+<!-- ══════ CAT BAR ══════ -->
+<div class="catbar">
+  <a href="#" class="active" onclick="filterCat('all',this)">All</a>
+  <a href="#WeebSite.html" onclick="filterCat('mobile',this)">📱 Mobiles</a>
+  <a href="#" onclick="filterCat('laptop',this)">💻 Laptops</a>
+  <a href="#" onclick="filterCat('audio',this)">🎧 Audio</a>
+  <a href="#" onclick="filterCat('accessory',this)">⌚ Accessories</a>
+</div>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+
+  <!-- Left -->
+  <div class="hero-text">
+    <div class="hero-tag">
+      <div class="tag-dot"></div>
+      FREE DELIVERY ABOVE ₹999
+    </div>
+
+    <h1>
+      Tech That<br>
+      <span class="grad">Powers</span><br>
+      Your World
+    </h1>
+
+    <p class="hero-sub">
+      Explore the latest gadgets, audio gear, and accessories — all at prices that actually make sense.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-main" onclick="document.getElementById('store').scrollIntoView({behavior:'smooth'})">Shop Now ↓</button>
+      <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><span class="s-num">500+</span><span class="s-lbl">PRODUCTS</span></div>
+      <div class="stat"><span class="s-num">50K+</span><span class="s-lbl">CUSTOMERS</span></div>
+      <div class="stat"><span class="s-num">4.9★</span><span class="s-lbl">RATING</span></div>
+    </div>
+  </div>
+
+  <!-- Right -->
+  <div class="hero-visual">
+    <div class="phone-card">
+      <span>📱</span>
+      <div class="phone-label">VOLT STORE</div>
+      <div class="phone-dots"><span></span><span></span><span></span></div>
+
+      <div class="chip chip-a">⚡ New Arrivals</div>
+      <div class="chip chip-b">🔥 Hot Deals</div>
+      <div class="chip chip-c">✅ Free Returns</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PRODUCTS ══════ -->
+<div class="sec-head sr">
+  <h2>Our Products</h2>
+  <span id="pCount">8 items</span>
+</div>
+
+<section class="store" id="store">
+
+  <div class="card sr" data-cat="mobile">
+    <div class="ribbon">HOT</div>
+    <img src="smartphone.jpeg">
+    <h5 class="p-name">Smartphone Pro</h5>
+    <p class="p-sub">128GB · Dual Camera</p>
+    <p class="price">₹14,999</p>
+    <button class="add-btn" onclick="addCart(event,this,'Smartphone Pro')">Add to Cart</button>
+  </div>
+
+  <div class="card sr" data-cat="laptop">
+    <div class="ribbon blue">NEW</div>
+    <img src="laptop.jpeg">
+    <h5 class="p-name">Laptop Ultra</h5>
+    <p class="p-sub">16GB RAM · 512GB SSD</p>
+    <p class="price">₹55,000</p>
+    <button class="add-btn" onclick="addCart(event,this,'Laptop Ultra')">Add to Cart</button>
+  </div>
+
+  <div class="card sr" data-cat="audio">
+   <img src="headphones.jpeg">
+    <h5 class="p-name">Wireless Headphones</h5>
+    <p class="p-sub">ANC · 30hr Battery</p>
+    <p class="price">₹2,499</p>
+    <button class="add-btn" onclick="addCart(event,this,'Wireless Headphones')">Add to Cart</button>
+  </div>
+
+  <div class="card sr" data-cat="accessory">
+    <div class="ribbon">SALE</div>
+    <img src="smartwatch.jpeg">
+    <h5 class="p-name">Smart Watch</h5>
+    <p class="p-sub">Health Tracking · GPS</p>
+    <p class="price">₹3,999</p>
+    <button class="add-btn" onclick="addCart(event,this,'Smart Watch')">Add to Cart</button>
+  </div>
+
+  <div class="card sr" data-cat="accessory">
+    <img src="keybord.jpeg">
+    <h5 class="p-name">Gaming Keyboard</h5>
+    <p class="p-sub">RGB · Mechanical</p>
+    <p class="price">₹1,999</p>
+    <button class="add-btn" onclick="addCart(event,this,'Gaming Keyboard')">Add to Cart</button>
+  </div>
+
+  <div class="card sr" data-cat="accessory">
+    <img src="mouse.jpeg">
+    <h5 class="p-name">Wireless Mouse</h5>
+    <p class="p-sub">Silent Click · Ergonomic</p>
+    <p class="price">₹799</p>
+    <button class="add-btn" onclick="addCart(event,this,'Wireless Mouse')">Add to Cart</button>
+  </div>
+
+  <div class="card sr" data-cat="audio">
+    <div class="ribbon">HOT</div>
+    <img src="speaker.jpeg">
+    <h5 class="p-name">Bluetooth Speaker</h5>
+    <p class="p-sub">360° Sound · Waterproof</p>
+    <p class="price">₹1,499</p>
+    <button class="add-btn" onclick="addCart(event,this,'Bluetooth Speaker')">Add to Cart</button>
+  </div>
+
+  <div class="card sr" data-cat="accessory">
+    <img src="camera.jpeg">
+    <h5 class="p-name">Digital Camera</h5>
+    <p class="p-sub">24MP · 4K Video</p>
+    <p class="price">₹28,999</p>
+    <button class="add-btn" onclick="addCart(event,this,'Digital Camera')">Add to Cart</button>
+  </div>
+
+</section>
+
+<div id="noRes">
+  <div class="nr-ico">🔍</div>
+  <h3>No products found</h3>
+  <p style="color:var(--muted);margin-top:6px;font-size:.88rem">Try a different keyword</p>
+</div>
+
+<!-- ══════ CONTACT ══════ -->
+<section id="contact">
+  <div class="c-inner">
+    <h2>Get in Touch</h2>
+    <p>We typically reply within a few hours — drop us a message!</p>
+    <div class="c-form sr" id="cForm">
+      <div class="f-row">
+        <label>YOUR NAME</label>
+        <input type="text" id="cName" placeholder="mukesh">
+      </div>
+      <div class="f-row">
+        <label>EMAIL ADDRESS</label>
+        <input type="email" id="cEmail" placeholder="mukesh@example.com">
+      </div>
+      <div class="f-row">
+        <label>MESSAGE</label>
+        <textarea id="cMsg" rows="4" placeholder="Tell us how we can help…"></textarea>
+      </div>
+      <button class="send-btn" onclick="sendForm()">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<footer><p>© 2025 <b>Volt Electronics</b> — Made with ♥ in India</p></footer>
+
+<div id="toasts"></div>
+
+
+<script src="website.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
